@@ -1,0 +1,1998 @@
+@use "sass:math";
+
+/* ========================================
+   変数定義
+======================================== */
+
+// --- カラー ---
+$color-text: #F2F2F2;
+$color-bg: #e6e6e6;
+$color-bg-yellow: #F2F2ED;
+$color-base: #008cff;
+$color-main: #FFE5B5;
+$color-accent: #FCFF54;
+$color-white: #FFF;
+$color-text-dark: #000;
+
+$pink-bg: #ff3d77;
+$blue-bg: #c2f3ff;
+$yellow-bg: #feffc5;
+$blue-main: #0084FF;
+$blue-light: #41efff;
+$blue-dark: #002756;
+$btn-red: #DF0000;
+
+// --- フォント ---
+$font-primary: "M PLUS Rounded 1c", sans-serif;
+$font-text: "Zen Kaku Gothic Antique", sans-serif;
+
+// --- アニメーション設定 ---
+$wave-cycle: 200px;
+$wave-speed: 6s;
+
+// --- ブレークポイント ---
+$breakpoints: (
+    mobile: 375px,
+    tablet: 768px,
+    desktop: 1100px
+);
+
+// --- スペーシング ---
+$space-xs: 0.25rem; // 4px
+$space-s: 0.5rem; // 8px
+$space-m: 1rem; // 16px
+$space-l: 1.5rem; // 24px
+$space-xl: 2rem; // 32px
+$space-xxl: 2.5rem; // 40px
+$space-xxxl: 3rem; // 48px
+
+
+/* ========================================
+   関数・ミックスイン
+======================================== */
+
+// pxからremへの変換
+@function rem($px-value) {
+    @return #{math.div($px-value, 16)}rem;
+}
+
+// メディアクエリ
+@mixin mq($breakpoint: desktop) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+// インナー幅の設定
+@mixin inner($mw: 1300px, $w: 95%) {
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// セクションタイトル
+@mixin title() {
+    font-family: $font-primary;
+    margin-bottom: rem(80);
+    font-weight: bold;
+    font-size: rem(45);
+    text-align: center;
+    color: $color-accent;
+    text-shadow: 3px 3px 0px $color-text-dark;
+}
+
+// ページタイトル（白背景用）
+@mixin page-title() {
+    @include title();
+    margin-bottom: rem(60);
+    color: $blue-main;
+    text-shadow: 2px 2px 0px $color-accent;
+    background-color: rgba($color-white, 0.95);
+    border-radius: rem(100);
+}
+
+
+/* ========================================
+   アニメーション定義
+======================================== */
+
+@keyframes up {
+    0% {
+        transform: translateX(50vh) rotate(0deg) scale(var(--size));
+        opacity: 0;
+    }
+
+    10%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-250vh) rotate(var(--rotate));
+        opacity: 0;
+    }
+}
+
+@keyframes puka-puka {
+
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: var(--up);
+    }
+}
+
+@keyframes move-right {
+    0% {
+        transform: translate3d(calc(var(--wave-cycle) * -1), 0, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move-left {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(calc(var(--wave-cycle) * -1), 0, 0);
+    }
+}
+
+@keyframes big {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes gradientAnimation {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes Linkup {
+    0% {}
+
+    100% {
+        transform: scale(1.1) rotate(-2deg);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* コンテンツの背後に配置 */
+    overflow: hidden;
+    background-color: $color-base;
+    /* 背景色 */
+}
+
+.bg-item {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    /* 少し透かすとおしゃれです */
+}
+
+.item1 {
+    width: 50%;
+    height: 50%;
+    bottom: 15%;
+    right: -25%;
+    background-image: url('../img/back/back_1.png');
+    animation: rotate 10s linear infinite;
+}
+
+.item2 {
+    width: 50%;
+    height: 50%;
+    bottom: 45%;
+    left: 5%;
+    background-image: url('../img/back/back_2.png');
+    animation: rotate 10s linear infinite;
+}
+
+.item3 {
+    width: 175px;
+    height: 175px;
+    bottom: 30%;
+    right: 50%;
+    background-image: url('../img/back/back_3.png');
+    animation: rotate 10s linear infinite;
+}
+
+.item4 {
+    width: 175px;
+    height: 175px;
+    bottom: 30%;
+    right: 50%;
+    background-image: url('../img/back/back_4.png');
+    animation: rotate 10s linear infinite;
+}
+
+/* アニメーションの内容 */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ========================================
+   ベーススタイル
+======================================== */
+
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.ad {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+
+.cloud-wipe-container {
+    position: fixed;
+    /* スクロール中も画面に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 500;
+    display: flex;
+    /* 雲が閉じきった後に背景が白くなるように */
+    background: rgba(255, 255, 255, 0);
+    transition: all 0.3s;
+}
+
+.cloud-layer {
+    position: absolute;
+    top: 0;
+    width: 140%;
+    height: 130vh;
+    /* ここに雲の画像を背景として入れる */
+    background: url(../img/icon/cloud.png) repeat;
+    background-size: contain;
+
+    @include mq(desktop) {
+        background-size: 50%;
+    }
+}
+
+.cloud-item {
+    width: 100%;
+    height: 50%;
+    background-size: 100%;
+}
+
+.cloud-left {
+    left: 0;
+    top: -100px;
+    transform: translateX(-100%);
+    /* 最初は左の外 */
+    /* background-image: url('cloud-left.png'); */
+}
+
+.cloud-right {
+    right: 0;
+    transform: translateX(100%);
+    /* 最初は右の外 */
+    /* background-image: url('cloud-right.png'); */
+}
+
+body {
+    overflow-x: hidden;
+    font-family: $font-text;
+    font-size: rem(16);
+    color: $color-text-dark;
+    line-height: 2;
+    letter-spacing: 0.1em;
+    background: url(../img/back_s.png);
+
+    @include mq(desktop) {
+        background: url(../img/back_d.png);
+        background-size: 100%;
+    }
+
+    background-size: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    &.is-fixed {
+        overflow: hidden;
+    }
+
+    // カスタムスクロールバー
+    * {
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+
+            &:hover {
+                background: #555;
+            }
+        }
+    }
+}
+
+h2,
+.bold {
+    font-family: $font-primary;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   共通コンポーネント
+======================================== */
+
+// リンクボタン
+.linkBtn {
+    display: block;
+    width: 100%;
+    max-width: rem(300);
+    margin: rem(40) auto 0;
+    padding: rem(10);
+    background-color: $btn-red;
+    color: $color-white;
+    border: 4px solid $color-white;
+    border-radius: rem(50);
+    font-size: rem(30);
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 0 $color-text-dark;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 0 $color-text-dark;
+    }
+
+    &:active {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 $color-text-dark;
+    }
+}
+
+// ハンバーガーメニュー
+.hamburger {
+    position: relative;
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: rem(10);
+    padding: rem(13) rem(10);
+    background-color: $pink-bg;
+    border: 3px solid $color-white;
+    border-radius: rem(20);
+    cursor: pointer;
+    z-index: 20;
+
+
+    &__span {
+        width: rem(50);
+        height: rem(6);
+        border-radius: rem(3);
+        background-color: $color-white;
+        transition: all 0.5s ease;
+        transform-origin: center;
+    }
+
+    &.active {
+        .hamburger__span {
+            &:nth-child(1) {
+                transform: translateY(rem(16)) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(rem(-16)) rotate(-45deg);
+            }
+        }
+    }
+}
+
+
+/* ========================================
+   ヘッダー
+======================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: rem(20);
+    z-index: 200;
+
+    &__inner {
+        @include inner();
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        display: block;
+        max-width: rem(200);
+        width: 40%;
+        padding: rem(10) rem(5%);
+        border-radius: 0 0 rem(20) 0;
+        text-align: center;
+        align-content: center;
+        z-index: 20;
+    }
+}
+
+// ナビゲーションメニュー
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: rem(500);
+    height: 100vh;
+    padding-top: rem(150);
+    padding-bottom: rem(50);
+    background-color: $color-bg-yellow;
+    transform: translateY(-100%);
+    transition: all 0.6s ease-in-out;
+    overflow-y: auto;
+    pointer-events: none;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 10;
+
+    &.active {
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    &__inner {
+        @include inner();
+        display: grid;
+        grid-auto-flow: row;
+        row-gap: rem(50);
+        font-family: $font-primary;
+        font-size: rem(24);
+        font-weight: bold;
+    }
+
+    ul {
+        display: grid;
+        grid-auto-flow: row;
+        row-gap: rem(10);
+        padding: rem(50) 0;
+        background-color: $yellow-bg;
+        border-radius: rem(25);
+
+        li {
+            border-bottom: $color-bg 2px dashed;
+
+            &:first-child {
+                border-top: $color-bg 2px dashed;
+            }
+        }
+
+        &:nth-child(odd) {
+            background-color: $blue-bg;
+
+            li {
+                border-bottom: $color-white 2px dashed;
+
+                &:first-child {
+                    border-top: $color-white 2px dashed;
+                }
+
+
+            }
+        }
+    }
+
+    & .footer__media {
+        background-color: $color-white;
+        padding: rem(30) rem(10);
+        border-radius: rem(35);
+    }
+}
+
+
+/* ========================================
+   グローバルボトム（予約情報）
+======================================== */
+
+.global-bottom {
+    &__toggle {
+        position: absolute;
+        left: 2.5%;
+        top: -180px;
+        z-index: 20;
+
+        img {
+            width: rem(150);
+        }
+
+        .open {
+            display: block;
+            animation: big 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .back {
+            display: none;
+        }
+
+        &.is-open {
+            top: 10px;
+
+            img {
+                width: rem(100);
+            }
+
+            .back {
+                display: block;
+            }
+
+            .open {
+                display: none;
+            }
+        }
+    }
+
+    &__content {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        padding-top: rem(30);
+        background-color: $color-white;
+        border-radius: 35px 35px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.4s ease-in-out;
+        z-index: 5;
+
+        &.is-open {
+            transform: translateY(0);
+            top: rem(120);
+
+            @include mq(desktop) {
+                top: rem(300);
+            }
+        }
+    }
+
+    &__title {
+        width: 80%;
+        max-width: rem(300);
+        margin: 0 auto rem(20);
+        padding: 0.5em 0;
+        background-color: $blue-main;
+        color: $color-white;
+        border-radius: rem(100);
+        font-family: $font-primary;
+        font-size: rem(24);
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__menu {
+        margin: 0 5%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: rem(10);
+        row-gap: rem(30);
+        font-family: $font-primary;
+        font-size: rem(20);
+        font-weight: bold;
+        text-align: center;
+
+        @include mq(desktop) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        ul {
+            display: grid;
+            grid-auto-flow: row;
+            row-gap: rem(15);
+        }
+
+        &__box {
+            border: $blue-main 3px solid;
+            border-radius: rem(10);
+        }
+    }
+
+    &__tel {
+        margin: 0 10% rem(10);
+        padding: rem(20) 0;
+        background-color: $pink-bg;
+        color: $color-white;
+        border-radius: rem(25);
+        font-size: rem(24);
+        font-weight: bold;
+        text-align: center;
+        animation: big 3s ease-in-out infinite;
+
+        @include mq(desktop) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: rem(70);
+        }
+
+        img {
+            width: 60%;
+            max-width: rem(150);
+        }
+
+        &:hover {
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+
+/* ========================================
+   メインビジュアル
+======================================== */
+
+
+.mainvisual {
+    height: 100svh;
+    /* スクロールできる「遊び」を作るために高めに設定 */
+    transition: all 0.5s;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #ff8d6a, #ff428a, #90e1ff, #92ffe6);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    --display-height: 150px;
+    --wave-cycle: #{$wave-cycle};
+
+    &__inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__circle {
+        position: relative;
+        width: rem(750);
+        aspect-ratio: 1;
+        max-width: none;
+        max-height: none;
+        flex-shrink: 0;
+        background-color: $blue-main;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s;
+
+        @include mq(desktop) {
+            transform: scale(130%);
+        }
+
+        &__photo {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            max-width: rem(200);
+            aspect-ratio: 1;
+            border: $color-white 10px solid;
+            border-radius: 50%;
+            object-fit: cover;
+            opacity: 0;
+        }
+
+        &__image {
+            position: absolute;
+            bottom: 10%;
+            max-width: rem(200);
+            border: 0;
+            border-radius: 0;
+            object-fit: contain;
+            animation: puka-puka 4s ease-in-out infinite;
+        }
+    }
+
+    &__copy {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        transform: rotate(-3deg);
+        z-index: 3;
+
+        @include mq(desktop) {
+            top: 30%;
+        }
+
+        img {
+            width: 90%;
+            max-width: rem(700);
+        }
+    }
+
+    &__waves {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: rem(50);
+
+        .wave {
+            position: relative;
+            height: var(--display-height);
+            margin-bottom: -2px;
+            overflow: hidden;
+
+            svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 2400px;
+                height: calc(100% + 2px);
+                fill: $blue-light;
+                will-change: transform;
+                z-index: 3;
+            }
+
+            &.top svg {
+                animation: move-left $wave-speed linear infinite;
+            }
+
+            &.bottom svg {
+                animation: move-right $wave-speed linear infinite;
+            }
+        }
+    }
+}
+
+.ios .mainvisual {
+    position: relative;
+}
+
+
+/* ========================================
+   セクション：島トゥクとは
+======================================== */
+
+.about {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: rem(250);
+    padding-top: rem(50);
+    padding-bottom: rem(100);
+    background-color: $color-main;
+    overflow: hidden;
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+    }
+
+    // 背景画像（ぼかし）
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("../img/image/28.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(3px);
+        transform: scale(1.1);
+        z-index: 0;
+    }
+
+    // オーバーレイ
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    &__title {
+        margin-bottom: 100px;
+        @include title();
+        color: $color-white;
+    }
+
+    &__textbox {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: rem(10) 5%;
+        background-color: rgba($color-bg, 0.8);
+        color: $color-text-dark;
+        font-family: $font-primary;
+        font-size: clamp(20px, 3vw, 30px);
+        font-weight: bold;
+        text-align: center;
+        white-space: pre-line;
+    }
+}
+
+
+/* ========================================
+   セクション：景色の例
+======================================== */
+
+.vision-example {
+    margin-bottom: rem(250);
+    background-color: $color-white;
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+
+    &__title {
+        @include page-title();
+    }
+
+    &__image-area {
+        position: relative;
+        width: 100%;
+        height: rem(700);
+
+
+        img {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 100%;
+            height: 80%;
+            max-width: rem(800);
+            transform: translateX(-50%);
+            object-fit: cover;
+            transition: all 0.5s;
+            border-radius: rem(35);
+            outline: solid 3px rgb(35, 72, 255);
+            outline-offset: 7px;
+        }
+    }
+}
+
+
+/* ========================================
+   セクション：ご利用方法
+======================================== */
+
+.appointment-ex {
+    margin-top: 1200px;
+    margin-bottom: rem(250);
+
+    &__inner {
+        @include inner();
+        max-width: rem(800);
+        text-align: right;
+    }
+
+    &__title {
+        @include title();
+    }
+
+    &__textbox {
+        display: block;
+        width: 100%;
+        max-width: rem(800);
+        margin: 0 auto;
+        padding: 18px 50px;
+        background-color: $color-white;
+        border: $color-text-dark 3px solid;
+        border-radius: rem(30);
+        color: $color-text-dark;
+        font-family: $font-text;
+        text-align: left;
+        white-space: pre-line;
+    }
+
+    &__link {
+        display: inline-block;
+        margin: rem(25) 0;
+        padding: rem(5) rem(15);
+        background: $color-accent;
+        color: $color-text-dark;
+        border-radius: rem(20);
+        border: 3px solid $color-text-dark;
+        font-weight: 900;
+        transition: all 0.3s ease;
+
+        &:hover {
+            animation: Linkup 0.5s ease-in-out forwards;
+        }
+    }
+}
+
+
+/* ========================================
+   セクション：お知らせ
+======================================== */
+
+.news {
+    width: 100%;
+    margin-bottom: rem(250);
+
+    &__inner {
+        @include mq(desktop) {
+            @include inner();
+        }
+    }
+
+    &__title {
+        @include title();
+    }
+
+    &__box {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: rem(20);
+        margin-left: 5%;
+        margin-bottom: rem(100);
+        overflow-x: auto;
+
+        @include mq(desktop) {
+            margin-left: 0;
+        }
+
+        a article {
+            width: rem(300);
+        }
+    }
+
+    &__textbox {
+        height: rem(200);
+        background-color: $color-white;
+        padding: rem(10);
+        border-radius: 0 0 rem(20) rem(20);
+    }
+
+    &__imgbox img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: rem(20) rem(20) 0 0;
+    }
+}
+
+.ios .appointment-ex {
+    margin-top: rem(200);
+}
+
+// お知らせアーカイブ
+.news-archive {
+    width: 100%;
+    padding: rem(250) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title();
+    }
+
+    &__grid {
+        display: grid;
+        grid-auto-flow: row;
+        column-gap: rem(20);
+        row-gap: rem(20);
+        margin-bottom: rem(100);
+
+        @include mq(desktop) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        a article {
+            width: 100%;
+            max-width: rem(600);
+            margin: 0 auto;
+
+            @include mq(desktop) {
+                max-width: rem(300);
+            }
+
+            img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                border-radius: rem(20) rem(20) 0 0;
+
+
+                @include mq(desktop) {
+                    height: 200px;
+                }
+            }
+        }
+
+
+    }
+
+    &__textbox {
+        height: rem(200);
+        background-color: $color-white;
+        overflow: scroll;
+    }
+
+    & .pagination {
+        a {
+            display: inline-block;
+            padding: rem(10);
+            border-radius: rem(5);
+            background-color: $color-white;
+            cursor: pointer;
+
+        }
+
+        span {
+            display: inline-block;
+            padding: rem(10);
+            border-radius: rem(5);
+            background-color: #b3b3b3;
+        }
+    }
+
+}
+
+
+
+// 個別記事
+.single-news {
+    padding: rem(250) 0;
+
+    &__title {
+        @include page-title();
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+    &__date {
+        display: inline-block;
+        padding: rem(10);
+        border-radius: rem(5);
+        margin-bottom: 30px;
+        font-size: 0.9rem;
+        background-color: $color-white;
+    }
+
+    & img {
+        width: 100%;
+        max-width: rem(800);
+        height: auto;
+        margin-bottom: 40px;
+        border-radius: rem(35);
+    }
+
+    &__contents {
+
+
+        .content {
+            padding: rem(50) 5%;
+            background-color: $color-white;
+            text-align: center;
+            line-height: 1.8;
+            border-radius: rem(20);
+
+            p {
+                max-width: rem(800);
+                text-align: left;
+            }
+        }
+    }
+}
+
+
+/* ========================================
+   フッター
+======================================== */
+
+.footer {
+    padding: rem(100) 0;
+    background-color: #1C5E75;
+    color: $color-white;
+    text-align: center;
+
+    img {
+        width: 100%;
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+    &__media {
+        max-width: rem(500);
+        margin: 0 auto;
+        display: grid;
+        grid-auto-flow: row;
+        row-gap: rem(50);
+
+        a {
+            transition: all 0.5s linear;
+
+            &:hover {
+                transform: scale(105%);
+            }
+        }
+
+        img {
+            width: 100%;
+            border-radius: rem(35);
+        }
+
+        &__SNS {
+            display: grid;
+            grid-auto-flow: column;
+            column-gap: rem(50);
+            align-items: center;
+
+            .insta {
+                display: block;
+                width: 40%;
+                margin: 0 auto;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+
+    &__fnav {
+        display: grid;
+        grid-auto-flow: column;
+        margin: rem(100) 0;
+        text-align: center;
+
+        ul {
+            display: grid;
+            grid-auto-flow: row;
+            row-gap: rem(40);
+            padding: 0 rem(20);
+            border-right: $color-white solid;
+            border-left: $color-white solid;
+            font-weight: bold;
+
+            a {
+                transition: all 0.5s linear;
+
+                &:hover {
+                    color: $color-accent;
+                }
+            }
+        }
+    }
+
+    &__info {
+        padding: rem(30);
+        border: $color-white 2px solid;
+        border-radius: rem(20);
+        text-align: left;
+        line-height: 3;
+    }
+
+    &__copy {
+        padding-bottom: rem(100);
+        font-size: rem(12);
+        font-weight: bold;
+    }
+}
+
+
+/* ========================================
+   ページ：予約
+======================================== */
+
+.appointment {
+    padding: rem(150) 0;
+
+    &__inner {
+        @include inner();
+        padding: rem(60) 5%;
+        background-color: rgba($color-white, 0.95);
+        border-radius: rem(40);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    &__title {
+        @include inner();
+        @include page-title();
+    }
+
+    &__list {
+        display: grid;
+        row-gap: rem(30);
+        margin-bottom: rem(50);
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            padding: rem(30);
+            border-radius: rem(25);
+            font-weight: bold;
+            line-height: 1.8;
+
+            &:nth-child(1) {
+                background-color: lighten($pink-bg, 35%);
+                border: 3px solid $pink-bg;
+            }
+
+            &:nth-child(2) {
+                background-color: lighten($blue-light, 20%);
+                border: 3px solid $color-base;
+            }
+        }
+
+        p {
+            position: relative;
+            display: inline-block;
+            padding-left: 50px;
+            text-align: left;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                display: block;
+                width: 30px;
+                height: 30px;
+                background-color: $blue-main;
+                border-radius: rem(5);
+                transition: all 0.4s linear;
+            }
+
+            &::before:hover {
+                transform: rotate(315deg);
+                background-color: $color-white;
+            }
+        }
+    }
+
+    .global-bottom__menu {
+        grid-template-columns: repeat(1, 1fr);
+        max-height: rem(350);
+        overflow-y: scroll;
+
+        @include mq(desktop) {
+            grid-template-columns: repeat(2, 1fr);
+            max-height: rem(500);
+            overflow-y: auto;
+        }
+    }
+
+    &__others {
+        margin-top: rem(80);
+        text-align: left;
+
+        &__textbox {
+            padding: rem(40);
+            background-color: $color-bg;
+            border-radius: 0 rem(25) rem(25) rem(25);
+            text-align: left;
+
+            ul li {
+                padding: rem(10) 0;
+                border-bottom: 1px dashed darken($color-bg, 10%);
+                list-style: none;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                p::before {
+                    content: "●";
+                    margin-right: rem(10);
+                    color: $pink-bg;
+                }
+            }
+        }
+    }
+
+    &__toggleBtn {
+        display: inline-block;
+        padding: rem(10) rem(40);
+        background-color: $color-accent;
+        color: $color-text-dark;
+        border: solid 3px $color-text-dark;
+        border-radius: rem(50) rem(50) 0 0;
+        font-weight: bold;
+
+        &:hover {
+            background-color: darken($color-accent, 10%);
+        }
+    }
+
+    .linkBtn {
+        margin-top: rem(60);
+        animation: big 3s ease-in-out infinite;
+    }
+}
+
+
+/* ========================================
+   ページ：コース
+======================================== */
+
+.root {
+    padding: rem(100) 0;
+
+    @include mq(desktop) {
+        padding: rem(250) 0;
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include page-title();
+        margin-bottom: rem(60);
+        text-align: center;
+    }
+
+    &__image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto rem(80);
+        padding: 0;
+        background-color: #bee4bf;
+        border-radius: rem(25);
+        outline: solid 3px rgb(58, 190, 51);
+        outline-offset: -7px;
+        text-align: center;
+        transition: opacity 0.3s ease;
+
+        @include mq(desktop) {
+            max-width: 1000px;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        img {
+            width: 80%;
+        }
+    }
+
+    &__textbox {
+        margin-top: rem(80);
+        padding: rem(40) rem(30);
+        background-color: $color-white;
+        border-radius: rem(8);
+
+        @include mq(desktop) {
+            padding: rem(60) rem(80);
+            margin-top: rem(100);
+        }
+
+        p {
+            margin: 0;
+            color: $color-text-dark;
+            line-height: 2;
+            letter-spacing: 0.05em;
+        }
+    }
+}
+
+
+/* ========================================
+   ページ：スポット
+======================================== */
+
+.spot {
+    padding: rem(250) 0;
+
+    &__inner {
+        @include inner();
+        display: grid;
+        row-gap: rem(100);
+    }
+
+    &__title {
+        @include inner();
+        @include page-title();
+    }
+
+    .unit {
+        padding: 10%;
+        background-color: $color-bg-yellow;
+        border-radius: rem(50);
+        outline: 3px solid rgb(103, 92, 255);
+        outline-offset: -10px;
+
+        &__title {
+            @include title();
+            margin-bottom: rem(20);
+            padding: 0.5em 0;
+            background-color: rgba($color-white, 0.95);
+            color: $blue-main;
+            border: 3px solid $blue-light;
+            border-radius: rem(100);
+            font-size: rem(30);
+            text-shadow: 2px 2px 0px $color-accent;
+
+            @include mq(desktop) {
+                font-size: rem(40);
+            }
+        }
+
+        &__box {
+            margin: 0 auto;
+            text-align: center;
+
+            @include mq(desktop) {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: rem(20);
+            }
+        }
+
+        &__img {
+            width: 100%;
+            max-width: rem(275);
+            height: rem(350);
+            border-radius: rem(35);
+            object-fit: cover;
+
+            @include mq(desktop) {
+                max-width: rem(400);
+                height: rem(500);
+            }
+        }
+
+        &__textbox {
+            margin-top: rem(30);
+            padding: rem(18);
+            background-color: $color-white;
+            border: $color-base solid 5px;
+            border-radius: rem(20);
+            text-align: left;
+
+            @include mq(desktop) {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+/* ========================================
+   ページ：お問い合わせ
+======================================== */
+
+.access {
+    padding: rem(100) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include page-title();
+    }
+
+    &__policy {
+        margin-top: rem(60);
+        padding: rem(30);
+        background-color: $color-white;
+        border: 1px solid darken($color-bg, 10%);
+        border-radius: rem(20);
+
+        &__title {
+            margin-bottom: rem(20);
+            color: $blue-dark;
+            font-family: $font-primary;
+            font-size: rem(22);
+            text-align: center;
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                width: rem(50);
+                height: rem(3);
+                margin: rem(10) auto 0;
+                background-color: $blue-light;
+                border-radius: rem(10);
+            }
+        }
+
+        &__textbox {
+            margin-bottom: rem(20);
+            text-align: center;
+
+            p {
+                font-size: rem(14);
+                color: $color-text-dark;
+                line-height: 1.6;
+            }
+        }
+
+        &__listbox {
+            height: rem(250);
+            padding-top: rem(20);
+            padding-right: rem(15);
+            border-top: 1px solid #eee;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #ccc;
+                border-radius: 10px;
+
+                &:hover {
+                    background: $color-base;
+                }
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+
+                li {
+                    margin-bottom: rem(25);
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            p {
+                padding-left: rem(22);
+                font-size: rem(14);
+                color: $color-text-dark;
+                line-height: 1.7;
+            }
+        }
+
+        &__subtitle {
+            display: flex;
+            align-items: center;
+            margin-bottom: rem(8);
+            color: $color-text-dark;
+            font-size: rem(16);
+            font-weight: bold;
+
+            &::before {
+                content: '■';
+                margin-right: rem(10);
+                color: $color-base;
+                font-size: rem(12);
+            }
+        }
+    }
+
+    .mw_wp_form_thanks+.appointment__policy {
+        display: none;
+    }
+
+    .contact-form {
+        padding: rem(40);
+        background-color: lighten($color-bg, 5%);
+        border: 2px solid $color-base;
+        border-radius: rem(30);
+
+        .form-item {
+            margin-bottom: rem(25);
+
+            label {
+                display: block;
+                margin-bottom: rem(10);
+                padding-left: rem(10);
+                color: $blue-dark;
+                font-family: $font-primary;
+                font-weight: bold;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: rem(15);
+                border: 2px solid $color-white;
+                border-radius: rem(15);
+                font-family: $font-text;
+                font-size: rem(16);
+                transition: border-color 0.3s;
+
+                &:focus {
+                    outline: none;
+                    background-color: #fff;
+                    border-color: $color-base;
+                }
+            }
+
+            textarea {
+                height: rem(200);
+            }
+        }
+
+        .form-submit {
+            text-align: center;
+            display: block;
+            width: 100%;
+            max-width: rem(300);
+            margin: rem(40) auto 0;
+            padding: rem(15);
+            background-color: $btn-red;
+            color: $color-white;
+            border: 4px solid $color-white;
+            border-radius: rem(50);
+            font-size: rem(20);
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 0 $color-text-dark;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 7px 0 $color-text-dark;
+            }
+
+            &:active {
+                transform: translateY(2px);
+                box-shadow: 0 2px 0 $color-text-dark;
+            }
+        }
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: rem(50);
+        color: $blue-main;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+            color: darken($blue-main, 10%);
+        }
+    }
+
+    .thanks-box {
+        padding: rem(40);
+        background-color: $color-white;
+        border: 3px solid $color-base;
+        border-radius: rem(30);
+        text-align: center;
+
+        &__message {
+            margin-bottom: rem(30);
+            color: $blue-dark;
+            font-family: $font-primary;
+            font-size: rem(24);
+            font-weight: bold;
+            line-height: 1.6;
+
+            span {
+                display: block;
+                margin-top: rem(10);
+                color: $color-text-dark;
+                font-size: rem(16);
+            }
+        }
+    }
+}
+
+
+/* ========================================
+   ページ：アクセス
+======================================== */
+
+.info {
+    padding: rem(150) 0;
+
+    &__inner {
+        @include inner();
+        padding: rem(30);
+        background-color: $color-white;
+        border-radius: rem(40);
+    }
+
+    &__title {
+        @include inner();
+        @include page-title();
+    }
+
+    .start {
+        color: $blue-main;
+        font-size: 1.3em;
+        font-weight: 900;
+    }
+
+    .goal {
+        color: $btn-red;
+        font-size: 1.3em;
+        font-weight: 900;
+        background: linear-gradient(transparent 60%, $color-accent 60%);
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+        gap: rem(15);
+        margin: rem(60) 0 rem(30);
+        color: $blue-dark;
+        font-family: $font-primary;
+        font-size: rem(28);
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: rem(12);
+            height: rem(30);
+            background-color: $blue-main;
+            border-radius: rem(6);
+        }
+    }
+
+    ul {
+        display: grid;
+        row-gap: rem(25);
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            padding: rem(20) rem(30);
+            border: 2px solid transparent;
+            border-radius: rem(20);
+            color: $color-text-dark;
+            font-weight: bold;
+            line-height: 1.8;
+            transition: transform 0.3s ease;
+
+            &:nth-child(1) {
+                background-color: lighten($blue-light, 20%);
+                border-color: $color-base;
+            }
+
+            &:nth-child(2) {
+                background-color: lighten($color-main, 5%);
+                border-color: darken($color-main, 10%);
+            }
+
+            &:nth-child(3) {
+                background-color: #e0fae1;
+                border-color: #4dd0e1;
+            }
+
+            &:nth-child(4) {
+                background-color: #fce4ec;
+                border-color: #f06292;
+            }
+
+            &::after {
+                display: none !important;
+            }
+        }
+    }
+
+    &__gmap {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 56.25%;
+        margin: rem(30) 0;
+        border: $blue-main dotted 5px;
+
+        iframe {
+            position: absolute;
+            top: 2.5%;
+            left: 2.5%;
+            width: 95%;
+            height: 95%;
+        }
+    }
+
+    a[href*="meikaijo"] {
+        display: inline-block;
+        padding: rem(15) rem(40);
+        background-color: $btn-red;
+        color: $color-white;
+        border: 3px solid $color-white;
+        border-radius: rem(50);
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0 4px 0 $color-text-dark;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+            background-color: lighten($btn-red, 10%);
+        }
+    }
+}
+
+
+/* ========================================
+   ページ：Q&A
+======================================== */
+
+.qa {
+    padding: rem(100) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include page-title();
+    }
+
+    &__groups {
+        padding: rem(50) 0;
+        background-color: $color-white;
+        border-radius: rem(35);
+    }
+
+    &__group {
+        margin: rem(30);
+        padding: rem(50) rem(10);
+        border: solid 3px;
+        border-radius: rem(35);
+
+        @include mq(desktop) {
+            padding: rem(50);
+        }
+
+        &:nth-child(odd) {
+            background-color: lighten($blue-light, 20%);
+            border-color: $color-base;
+        }
+
+        &:nth-child(even) {
+            background-color: lighten($color-main, 5%);
+            border-color: darken($color-main, 10%);
+        }
+    }
+
+    .item {
+        display: grid;
+        grid-auto-flow: row;
+        row-gap: rem(50);
+
+        &__qanda {
+            display: grid;
+            grid-auto-flow: row;
+            row-gap: rem(30);
+
+            @include mq(desktop) {
+                grid-template-columns: 1fr 3fr;
+                column-gap: rem(20);
+            }
+        }
+
+        &__textbox {
+            position: relative;
+            padding: rem(40);
+            background-color: $color-white;
+            border: $color-text-dark 3px solid;
+            border-radius: rem(30);
+            align-content: center;
+
+            a {
+                border-bottom: $color-text-dark solid;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -5%;
+                left: rem(30);
+                width: rem(30);
+                height: rem(30);
+                background-color: $color-white;
+                border-bottom: solid $color-text-dark 3px;
+                border-left: solid $color-text-dark 3px;
+                transform: rotate(135deg);
+
+                @include mq(desktop) {
+                    top: 15%;
+                    left: rem(-10);
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        &__imgbox {
+            max-width: rem(200);
+            text-align: center;
+            align-content: top;
+
+            img {
+                width: 70%;
+            }
+        }
+    }
+}

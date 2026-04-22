@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296.07 130.15">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #bcbcbc;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke: #040000;
+        stroke-width: 3px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #85cfeb;
+      }
+
+      .cls-3 {
+        fill: #7ec4ed;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #ef8484;
+      }
+
+      .cls-9 {
+        font-size: 72px;
+      }
+
+      .cls-10 {
+        font-size: 36px;
+      }
+
+      .cls-6 {
+        fill: none;
+      }
+
+      .cls-7 {
+        fill: #eae843;
+      }
+
+      .cls-8 {
+        fill: #ece938;
+        font-family: TsukuBRdGothicStd-B-83pv-RKSJ-H, 'FOT-TsukuBRdGothic Std';
+        stroke: #63c5df;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <g>
+      <rect class="cls-1" x="7.13" y="90.21" width="12.53" height="25.26" rx="3.55" ry="3.55"/>
+      <rect class="cls-1" x="83.05" y="90.21" width="12.53" height="25.26" rx="3.55" ry="3.55"/>
+      <path class="cls-3" d="M3.81,59.64h95.1v37.22c0,4.67-3.79,8.46-8.46,8.46H12.27c-4.67,0-8.46-3.79-8.46-8.46v-37.22h0Z"/>
+      <path class="cls-3" d="M93.5,13.29h0v-.32s-27.61-3.54-42.56-3.52c-14.6.03-41.73,3.52-41.73,3.52v40.35h84.29V13.29h0Z"/>
+      <path class="cls-2" d="M82.91,20.95c0-1.8-1.57-3.33-3.7-3.6-6.46-.82-19.9-2.4-28.17-2.38-8.03.01-21.11,1.43-27.5,2.18-2.15.25-3.74,1.79-3.74,3.61v23.41c0,2.01,1.95,3.64,4.36,3.64h54.39c2.41,0,4.36-1.63,4.36-3.64v-23.21Z"/>
+      <rect class="cls-1" x="43.86" y="95.7" width="16.35" height="32.94" rx="4.18" ry="4.18"/>
+      <path class="cls-3" d="M9.21,53.32h84.29v43.54c0,4.67-3.79,8.46-8.46,8.46H17.67c-4.67,0-8.46-3.79-8.46-8.46v-43.54h0Z"/>
+      <ellipse class="cls-7" cx="19.81" cy="71.13" rx="6.43" ry="5.98"/>
+      <rect class="cls-4" x="39.56" y="53.32" width="23.59" height="30.26"/>
+      <ellipse class="cls-7" cx="52.03" cy="63.94" rx="4.61" ry="4.29"/>
+      <path class="cls-5" d="M52.03,1.5C7.13,1.5,2.27,17.42,2.27,17.42c0,0,22.28-7.14,49.76-7.14s49.76,7.14,49.76,7.14c0,0-4.86-15.92-49.76-15.92Z"/>
+      <path class="cls-4" d="M74.56,90.85c2.91,3.8,14.31,6.09,14.31,6.09,0,0-3.47-16.25-35.58-16.25h-2.53c-32.11,0-35.58,16.25-35.58,16.25,0,0,11.4-2.29,14.31-6.09,6.14-8,22.53-1.2,22.53-1.2,0,0,16.38-6.8,22.53,1.2Z"/>
+      <polyline class="cls-6" points="36.1 87.21 36.1 104.19 43.86 111.42"/>
+      <polyline class="cls-6" points="67.97 87.21 67.97 104.19 60.21 111.42"/>
+      <ellipse class="cls-7" cx="82.91" cy="71.13" rx="6.43" ry="5.98"/>
+      <line class="cls-3" x1="3.81" y1="59.64" x2="3.81" y2="16.96"/>
+      <line class="cls-3" x1="98.91" y1="59.64" x2="98.91" y2="16.58"/>
+    </g>
+    <text class="cls-8" transform="translate(115.32 86.83)"><tspan class="cls-9" x="0" y="0">島</tspan><tspan class="cls-10" x="72" y="-13.68">トゥク</tspan></text>
+  </g>
+</svg>

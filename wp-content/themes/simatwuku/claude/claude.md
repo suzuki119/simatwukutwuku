@@ -1,0 +1,1 @@
+claudeが生成したコードは全てgemini,Chatgptなど他AIで検証します
