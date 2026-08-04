@@ -154,23 +154,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         //雲のアニメーション
-        function updateCloudAnimation() {
-            const cloudContainer = document.getElementById('cloudWipe');
-            const mv = document.querySelector('.mainvisual');
+        const cloudContainer = document.getElementById('cloudWipe');
+        const mainvisual = document.querySelector('.mainvisual');
+        const cloudLeft = cloudContainer ? cloudContainer.querySelector('.cloud-left') : null;
+        const cloudRight = cloudContainer ? cloudContainer.querySelector('.cloud-right') : null;
 
-            if (!cloudContainer || !mv) return;
+        let cloudTicking = false;
+        let mvHidden = null;
 
-            const cloudLeft = cloudContainer.querySelector('.cloud-left');
-            const cloudRight = cloudContainer.querySelector('.cloud-right');
-
-            if (!cloudLeft || !cloudRight) return;
+        function renderCloudAnimation() {
+            cloudTicking = false;
 
             // アニメーションを動かす範囲（メインビジュアルの高さ分など）
             const scrollMax = window.innerHeight;
             const scrollY = window.scrollY;
 
             // 進捗率を 0 ～ 1 の間で計算
-            let progress = Math.min(scrollY / scrollMax, 1);
+            const progress = Math.min(scrollY / scrollMax, 1);
 
             // 雲の移動（-100% から 0% へ、100% から 0% へ）
             const leftMove = -100 + (progress * 200);
@@ -179,23 +179,34 @@ document.addEventListener('DOMContentLoaded', function () {
             cloudLeft.style.transform = `translateX(${leftMove}%)`;
             cloudRight.style.transform = `translateX(${rightMove}%)`;
 
-            // 雲が閉じきったらメインビジュアルを非表示にする
-            if (progress >= 0.4) {
-                mv.style.opacity = "0";
-                mv.style.pointerEvents = "none";
-            } else {
-                mv.style.opacity = "1";
-                mv.style.pointerEvents = "auto";
+            // 雲が閉じきったらメインビジュアルを非表示にする（状態が変わった時だけ書き込む）
+            const hide = progress >= 0.4;
+            if (hide !== mvHidden) {
+                mvHidden = hide;
+                mainvisual.style.opacity = hide ? "0" : "1";
+                mainvisual.style.pointerEvents = hide ? "none" : "auto";
             }
         }
 
-        // scroll は全デバイス共通
-        window.addEventListener('scroll', updateCloudAnimation, { passive: true });
+        // スクロールのたびに書き込むとレイアウトが強制的に再計算されるため、
+        // 描画フレームに 1 回だけまとめて反映する
+        function updateCloudAnimation() {
+            if (cloudTicking) return;
+            cloudTicking = true;
+            requestAnimationFrame(renderCloudAnimation);
+        }
 
-        // iOS はスクロール中に scroll イベントが遅延するため touchmove で補完
-        if (isIOS) {
+        if (cloudLeft && cloudRight && mainvisual) {
+            // scroll は全デバイス共通
+            window.addEventListener('scroll', updateCloudAnimation, { passive: true });
+
+            // iOS はスクロール中に scroll イベントが遅延するため touchmove で補完
+            if (isIOS) {
+                document.body.classList.add('ios');
+                window.addEventListener('touchmove', updateCloudAnimation, { passive: true });
+            }
+        } else if (isIOS) {
             document.body.classList.add('ios');
-            window.addEventListener('touchmove', updateCloudAnimation, { passive: true });
         }
 
         // window.addEventListener('scroll', () => {

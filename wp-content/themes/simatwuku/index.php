@@ -8,12 +8,12 @@
 
             <div class="global-bottom__content">
                  <div class="global-bottom__toggle">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/appointment.png" alt="" class="open">
-                 <img src="<?php echo get_template_directory_uri(); ?>/img/icon/back.png" alt="" class="back">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/appointment.webp" alt="" class="open" width="340" height="336">
+                 <img src="<?php echo get_template_directory_uri(); ?>/img/icon/back.webp" alt="" class="back" width="340" height="340">
                 </div>
                 <a href="tel:080-4223-3450">
                 <div class="global-bottom__tel">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/tel_1.png" alt="">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/tel_1.webp" alt="" width="420" height="147">
                     <p>#080-4223-3450</p>
 
 
@@ -76,36 +76,35 @@
 
 
 <div class="mainvisual__copy">
-<img src="<?php echo get_template_directory_uri(); ?>/img/icon/main-title.png"
+<img src="<?php echo get_template_directory_uri(); ?>/img/icon/main-title.webp"
      alt="しまトゥクあじはま"
-     fetchpriority="high">
+     width="1400" height="567"
+     fetchpriority="high"
+    >
 </div>
 
                 <div class="mainvisual__circle">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/icon/octopus.webp" alt="" class="mainvisual__circle__photo mainvisual__circle__image">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/icon/puffer-fish.webp" alt="" class="mainvisual__circle__photo mainvisual__circle__image">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_1.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_2.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_3.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_4.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_5.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/icon/octopus_1.webp" alt="" class="mainvisual__circle__photo mainvisual__circle__image">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_6.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_7.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_8.webp" alt="" class="mainvisual__circle__photo">
-
-<img src="<?php echo get_template_directory_uri(); ?>/img/mainvisual__image/Vector_9.webp" alt="" class="mainvisual__circle__photo">
+<?php
+// メインビジュアル内の写真（表示は最大200px四方なので実寸も抑えてある）
+$mv_photos = array(
+    array( 'icon/octopus.webp',              560, 546, true  ),
+    array( 'icon/puffer-fish.webp',          560, 414, true  ),
+    array( 'mainvisual__image/Vector_1.webp', 514, 560, false ),
+    array( 'mainvisual__image/Vector_2.webp', 560, 560, false ),
+    array( 'mainvisual__image/Vector_3.webp', 560, 560, false ),
+    array( 'mainvisual__image/Vector_4.webp', 554, 560, false ),
+    array( 'mainvisual__image/Vector_5.webp', 220, 220, false ),
+    array( 'icon/octopus_1.webp',            527, 560, true  ),
+    array( 'mainvisual__image/Vector_6.webp', 448, 560, false ),
+    array( 'mainvisual__image/Vector_7.webp', 560, 420, false ),
+    array( 'mainvisual__image/Vector_8.webp', 560, 560, false ),
+    array( 'mainvisual__image/Vector_9.webp', 560, 560, false ),
+);
+foreach ( $mv_photos as $p ) :
+    $class = 'mainvisual__circle__photo' . ( $p[3] ? ' mainvisual__circle__image' : '' );
+?>
+<img src="<?php echo get_template_directory_uri() . '/img/' . $p[0]; ?>" alt="" class="<?php echo $class; ?>" width="<?php echo $p[1]; ?>" height="<?php echo $p[2]; ?>">
+<?php endforeach; ?>
 
                 <div class="mainvisual__waves">
 <div>
@@ -216,12 +215,20 @@
                 <h2 class="vision-example__title">景色の例</h2>
                 <div class="vision-example__image-area">
                   <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/15.jpg" alt="example_1" class="vision-example__image-area__image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/13.jpg" alt="example_2" class="vision-example__image-area__image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/9.jpg" alt="example_3" class="vision-example__image-area__image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/19.jpg" alt="example_4" class="vision-example__image-area__image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/24.jpg" alt="example_5" class="vision-example__image-area__image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/20.jpg" alt="example_6" class="vision-example__image-area__image">
+<?php
+// スライド表示される作例写真。1枚目以外はファーストビュー外なので遅延読み込み
+$examples = array(
+    array( '15.webp', 960, 1200 ),
+    array( '13.webp', 800, 1067 ),
+    array( '9.webp',  800, 1069 ),
+    array( '19.webp', 960, 1200 ),
+    array( '24.webp', 960, 1200 ),
+    array( '20.webp', 961, 1200 ),
+);
+foreach ( $examples as $i => $ex ) :
+?>
+                    <img src="<?php echo get_template_directory_uri() . '/img/image/' . $ex[0]; ?>" alt="example_<?php echo $i + 1; ?>" class="vision-example__image-area__image" width="<?php echo $ex[1]; ?>" height="<?php echo $ex[2]; ?>" loading="lazy">
+<?php endforeach; ?>
                     </a>
                 </div>
                 <a href="https://www.instagram.com/ajihama.himakajima" class="more linkBtn">Instagram</a>
@@ -261,9 +268,9 @@ $news_query = new WP_Query($args);
 
          <div class="news__imgbox">
                 <?php if (has_post_thumbnail()) : ?>
-                    <?php the_post_thumbnail('medium'); ?>
+                    <?php the_post_thumbnail('medium', array('loading' => 'lazy')); ?>
                 <?php else : ?>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/news-template.jpg" alt="news">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/image/news-template.webp" alt="news" width="720" height="450" loading="lazy">
                 <?php endif; ?>
             </div>
 
@@ -278,6 +285,9 @@ $news_query = new WP_Query($args);
         </a>
 
     <?php endwhile; ?>
+    <?php wp_reset_postdata(); ?>
+<?php else : ?>
+    <p class="news__empty">まだ記事はありません。</p>
 <?php endif; ?>
 
 

@@ -15,7 +15,7 @@
           media="print"
           onload="this.media='all'">
 
-    <link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.png">
+    <link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp">
 
 
     <?php
@@ -48,11 +48,11 @@
             <a href="<?php echo home_url('/'); ?>" class="header__logo">
                 <?php if ( is_front_page() ) : ?>
                 <h1>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.png" alt="島トゥク ロゴ">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
                 </h1>
                 <?php else : ?>
                 <p>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.png" alt="島トゥク ロゴ">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
                 </p>
                 <?php endif; ?>
             </a>
@@ -83,14 +83,14 @@
             <div class="footer__media">
                 <div class="footer__media__SNS">
                     <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.png" alt="">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="" width="240" height="240" loading="lazy">
                     </a>
                     <a href="https://ameblo.jp/katu-sayo/" class="blog">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.jpg" alt="ブログバナー">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.webp" alt="ブログバナー" width="580" height="400" loading="lazy">
                     </a>
                 </div>
                 <a href="#" class="ajihama">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.jpg" alt="アジハマバナー">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.webp" alt="アジハマバナー" width="720" height="360" loading="lazy">
                 </a>
             </div>
                     </div>

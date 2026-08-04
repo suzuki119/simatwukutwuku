@@ -27,7 +27,7 @@ $news_query = new WP_Query($args);
                             <?php if (has_post_thumbnail()) : ?>
                                 <?php the_post_thumbnail('medium'); ?>
                             <?php else : ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/image/news-template.jpg" alt="news">
+                                <img src="<?php echo get_template_directory_uri(); ?>/img/image/news-template.webp" alt="news" width="720" height="450" loading="lazy">
                             <?php endif; ?>
 
                             <div class="news__textbox">
@@ -40,6 +40,8 @@ $news_query = new WP_Query($args);
 
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
+            <?php else : ?>
+                <p class="news-archive__empty">まだ記事はありません。</p>
             <?php endif; ?>
 
 

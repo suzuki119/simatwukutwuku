@@ -10,7 +10,7 @@
                     <article class="qa__group item">
                         <div class="item__qanda">
                             <div class="item__imgbox">
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/icon/customer.png" alt="">
+                                <img src="<?php echo get_template_directory_uri(); ?>/img/icon/customer.webp" alt="" width="600" height="600" loading="lazy">
                             </div>
                             <div class="item__textbox">
                                 <p>一回につきどれくらいの時間がかかりますか？
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="item__qanda">
-                            <div class="item__imgbox"><img src="<?php echo get_template_directory_uri(); ?>/img/icon/support.png" alt="">
+                            <div class="item__imgbox"><img src="<?php echo get_template_directory_uri(); ?>/img/icon/support.webp" alt="" width="600" height="600" loading="lazy">
                             </div>
                             <div class="item__textbox">
                                 <p>島一周コースでは２０分程度<br>
@@ -30,7 +30,7 @@
                     <article class="qa__group item">
                         <div class="item__qanda">
                             <div class="item__imgbox">
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/icon/customer.png" alt="">
+                                <img src="<?php echo get_template_directory_uri(); ?>/img/icon/customer.webp" alt="" width="600" height="600" loading="lazy">
                             </div>
                             <div class="item__textbox">
                                 <p>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="item__qanda">
-                            <div class="item__imgbox"><img src="<?php echo get_template_directory_uri(); ?>/img/icon/support.png" alt="">
+                            <div class="item__imgbox"><img src="<?php echo get_template_directory_uri(); ?>/img/icon/support.webp" alt="" width="600" height="600" loading="lazy">
                             </div>
                             <div class="item__textbox">
                                 <p>

@@ -11,8 +11,8 @@
                 <div class="root__image">
     <a href="<?php echo home_url('/spot'); ?>">
         <picture>
-            <source media="(min-width: 1100px)" srcset="<?php echo get_template_directory_uri(); ?>/img/map/d_map.png">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/map/s_map.png" alt="コースの画像">
+            <source media="(min-width: 1100px)" srcset="<?php echo get_template_directory_uri(); ?>/img/map/d_map.webp" width="1800" height="1272">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/map/s_map.webp" alt="コースの画像" width="571" height="1170" fetchpriority="high">
         </picture>
     </a>
 </div>

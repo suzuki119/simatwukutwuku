@@ -12,7 +12,7 @@
                 <article class="spot__group unit">
                     <h3 class="unit__title">ハイジのブランコ</h3>
                     <div class="unit__box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0508.jpg" alt="" class="unit__img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0508.webp" alt="" class="unit__img" width="1200" height="1135" loading="lazy">
                         <div class="unit__textbox">
                             <p>東のビーチ（サンライズビーチ）の崖にあるブランコです。カップルも多く、デートスポットとして有名な場所になっています。景色は格別ですが、勢いをつけすぎると、ちょっとどきどきするかも？
                             </p>
@@ -23,7 +23,7 @@
                 <article class="spot__group unit">
                     <h3 class="unit__title">八幡社</h3>
                     <div class="unit__box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0510.jpg" alt="" class="unit__img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0510.webp" alt="" class="unit__img" width="900" height="1200" loading="lazy">
                         <div class="unit__textbox">
                             <p>西の浜（サンセットビーチ）のすぐ隣りにある小さな神社です。日当たりが良く、天気の良い日は立派な松の木も相まってとても神秘的で美しい写真をとることができます。</p>
                         </div>
@@ -34,7 +34,7 @@
                     <h3 class="unit__title">たこのモニュメント</h3>
 
                     <div class="unit__box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0503.jpg" alt="" class="unit__img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0503.webp" alt="" class="unit__img" width="788" height="1200" loading="lazy">
                         <div class="unit__textbox">
                             <p>東と西、どちらにも置かれているたこのモニュメントです。東にいるのが「がっしー」、西にいるのは「にっしー」で、モニュメントのどこかにはハートマークが隠されています。</p>
                         </div>
@@ -45,7 +45,7 @@
                 <article class="spot__group unit">
                     <h3 class="unit__title">駐在所</h3>
                     <div class="unit__box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0497.jpg" alt="" class="unit__img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/view/IMG_0497.webp" alt="" class="unit__img" width="900" height="1200" loading="lazy">
                         <div class="unit__textbox">
                             <p>島の西側にある駐在所です。なんといっても特徴的なのはその外見で、タコをモチーフにしたその見た目は、島民にも親しまれています。</p>
                         </div>

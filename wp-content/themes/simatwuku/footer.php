@@ -5,15 +5,15 @@
 
                 <div class="footer__media__SNS">
                     <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.png" alt="">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="" width="240" height="240" loading="lazy">
                     </a>
                     <a href="https://ameblo.jp/katu-sayo/" class="blog">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.jpg" alt="ブログバナー">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.webp" alt="ブログバナー" width="580" height="400" loading="lazy">
                     </a>
                 </div>
 
                 <a href="#" class="ajihama">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.jpg" alt="アジハマバナー">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.webp" alt="アジハマバナー" width="720" height="360" loading="lazy">
                 </a>
 
                 <div class="footer__info">

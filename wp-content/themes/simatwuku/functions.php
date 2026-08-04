@@ -18,18 +18,61 @@ add_action('wp_enqueue_scripts', 'simatwuku_scripts');
 // Optional: enqueue main stylesheet if needed
 // スタイルシートの一括管理
 function simatwuku_styles() {
-    // 1. リセットCSS（CDN）を先に読み込む
-    wp_enqueue_style('reset-css', 'https://cdn.jsdelivr.net/npm/the-new-css-reset/css/reset.min.css');
+    // メインのstyle.css（リセットCSSは simatwuku_inline_reset_css() で先にインライン出力される）
+    $dir  = get_template_directory();
+    $file = '/css/style.css';
 
-    // 2. メインのstyle.css（リセットCSSに依存させることで順序を保証）
+    // 圧縮版が最新であればそちらを配信する（古ければ通常版にフォールバック）
+    if ( is_readable( $dir . '/css/style.min.css' )
+        && filemtime( $dir . '/css/style.min.css' ) >= filemtime( $dir . '/css/style.css' ) ) {
+        $file = '/css/style.min.css';
+    }
+
     wp_enqueue_style(
         'main-style',
-        get_template_directory_uri() . '/css/style.css',
-        array('reset-css'), // reset-cssの後に読み込む指定
-        filemtime(get_template_directory() . '/css/style.css') // 更新時にキャッシュを自動クリア
+        get_template_directory_uri() . $file,
+        array(),
+        filemtime( $dir . $file ) // 更新時にキャッシュを自動クリア
     );
 }
 add_action('wp_enqueue_scripts', 'simatwuku_styles');
+
+// WordPress の絵文字変換スクリプト（このサイトでは未使用）を止める
+function simatwuku_disable_emojis() {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'simatwuku_disable_emojis' );
+
+// リセットCSS（約1.5KB）は外部リクエストにせず <head> に直接埋め込む。
+// CDN 参照だと DNS + TLS のぶんレンダリングがブロックされるため。
+// wp_print_styles は wp_head の優先度8で実行されるので、それより前に出す。
+function simatwuku_inline_reset_css() {
+    $reset = get_template_directory() . '/css/reset.css';
+    if ( ! is_readable( $reset ) ) {
+        return;
+    }
+    echo '<style id="reset-css-inline">' . file_get_contents( $reset ) . '</style>' . "\n";
+}
+add_action( 'wp_head', 'simatwuku_inline_reset_css', 2 );
+
+// LCP になるメインコピー画像を先読みする
+function simatwuku_preload_lcp_image() {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    printf(
+        '<link rel="preload" as="image" href="%s" fetchpriority="high">' . "\n",
+        esc_url( get_template_directory_uri() . '/img/icon/main-title.webp' )
+    );
+}
+add_action( 'wp_head', 'simatwuku_preload_lcp_image', 1 );
 
 //サムネイル機能
 function simatwuku_theme_setup() {

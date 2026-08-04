@@ -36,18 +36,18 @@
 }
 @-webkit-keyframes puka-puka {
   0%, 100% {
-    margin-top: 0;
+    translate: 0 0;
   }
   50% {
-    margin-top: var(--up);
+    translate: 0 var(--up);
   }
 }
 @keyframes puka-puka {
   0%, 100% {
-    margin-top: 0;
+    translate: 0 0;
   }
   50% {
-    margin-top: var(--up);
+    translate: 0 var(--up);
   }
 }
 @-webkit-keyframes move-right {
@@ -152,7 +152,7 @@
   height: 50%;
   bottom: 15%;
   right: -25%;
-  background-image: url("../img/back/back_1.png");
+  background-image: url("../img/back/back_1.webp");
   -webkit-animation: rotate 10s linear infinite;
           animation: rotate 10s linear infinite;
 }
@@ -162,7 +162,7 @@
   height: 50%;
   bottom: 45%;
   left: 5%;
-  background-image: url("../img/back/back_2.png");
+  background-image: url("../img/back/back_2.webp");
   -webkit-animation: rotate 10s linear infinite;
           animation: rotate 10s linear infinite;
 }
@@ -172,7 +172,7 @@
   height: 175px;
   bottom: 30%;
   right: 50%;
-  background-image: url("../img/back/back_3.png");
+  background-image: url("../img/back/back_3.webp");
   -webkit-animation: rotate 10s linear infinite;
           animation: rotate 10s linear infinite;
 }
@@ -182,7 +182,7 @@
   height: 175px;
   bottom: 30%;
   right: 50%;
-  background-image: url("../img/back/back_4.png");
+  background-image: url("../img/back/back_4.webp");
   -webkit-animation: rotate 10s linear infinite;
           animation: rotate 10s linear infinite;
 }
@@ -260,7 +260,7 @@ html {
   width: 140%;
   height: 130vh;
   /* ここに雲の画像を背景として入れる */
-  background: url(../img/icon/cloud.png) repeat;
+  background: url(../img/icon/cloud.webp) repeat;
   background-size: contain;
 }
 @media (min-width: 1100px) {
@@ -297,14 +297,14 @@ body {
   color: #000;
   line-height: 2;
   letter-spacing: 0.1em;
-  background: url(../img/back_s.png);
+  background: url(../img/back_s.webp);
   background-size: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 @media (min-width: 1100px) {
   body {
-    background: url(../img/back_d.png);
+    background: url(../img/back_d.webp);
     background-size: 100%;
   }
 }
@@ -751,7 +751,7 @@ h2,
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/image/28.jpg");
+  background-image: url("../img/image/28.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -941,6 +941,10 @@ h2,
      object-fit: cover;
   border-radius: 1.25rem 1.25rem 0 0;
 }
+.news__empty {
+  text-align: center;
+  padding: 2.5rem 0;
+}
 
 .ios .appointment-ex {
   margin-top: 12.5rem;
@@ -1003,6 +1007,11 @@ h2,
   height: 12.5rem;
   background-color: #FFF;
   overflow: scroll;
+}
+.news-archive__empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 2.5rem 0;
 }
 .news-archive .pagination a {
   display: inline-block;
