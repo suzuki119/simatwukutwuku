@@ -12,7 +12,7 @@
                     </a>
                 </div>
 
-                <a href="#" class="ajihama">
+                <a href="https://yado-ajihama.com/" class="ajihama">
                     <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.webp" alt="アジハマバナー" width="720" height="360" loading="lazy">
                 </a>
 
