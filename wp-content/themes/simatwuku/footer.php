@@ -5,7 +5,7 @@
 
                 <div class="footer__media__SNS">
                     <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="" width="240" height="240" loading="lazy">
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="インスタグラム" width="240" height="240" loading="lazy">
                     </a>
                     <a href="https://ameblo.jp/katu-sayo/" class="blog">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.webp" alt="ブログバナー" width="580" height="400" loading="lazy">
@@ -50,11 +50,11 @@
 
             </nav>
 
-                        <div class="footer__copy"><small>©Ajihama All Rights Reserved.</small></div>
+            <div class="footer__copy"><small>©Ajihama All Rights Reserved.</small></div>
 
 
             <div class="ad">
-            <script type="text/javascript" src="https://cache1.value-domain.com/xa.j?site=simatwuku.s323.xrea.com"></script>
+                <script type="text/javascript" src="https://cache1.value-domain.com/xa.j?site=simatwuku.s323.xrea.com"></script>
             </div>
 
 
@@ -68,6 +68,6 @@
 
 
     <?php wp_footer(); ?>
-</body>
+    </body>
 
-</html>
+    </html>

@@ -5,15 +5,15 @@
 <head>
 
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Zen+Kaku+Gothic+Antique:wght@400;700&display=swap"
-          rel="stylesheet"
-          media="print"
-          onload="this.media='all'">
+        rel="stylesheet"
+        media="print"
+        onload="this.media='all'">
 
     <link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp">
 
@@ -46,14 +46,14 @@
     <header class="header">
         <div class="header__inner">
             <a href="<?php echo home_url('/'); ?>" class="header__logo">
-                <?php if ( is_front_page() ) : ?>
-                <h1>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
-                </h1>
+                <?php if (is_front_page()) : ?>
+                    <h1>
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
+                    </h1>
                 <?php else : ?>
-                <p>
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
-                </p>
+                    <p>
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/logo_2.webp" alt="島トゥク ロゴ" width="700" height="253" fetchpriority="high">
+                    </p>
                 <?php endif; ?>
             </a>
             <div class="global">
@@ -64,7 +64,7 @@
                 </div>
                 <nav class="menu">
                     <div class="menu__inner">
-                         <ul>
+                        <ul>
                             <li><a href="<?php echo home_url('/'); ?>">HOME　↓</a></li>
                             <li><a href="<?php echo home_url('/#about'); ?>">島トゥクとは</a></li>
                             <li><a href="<?php echo home_url('/#vision-example'); ?>">景色の例</a></li>
@@ -80,19 +80,19 @@
                             <li><a href="<?php echo home_url('/info'); ?>">アクセス</a></li>
                         </ul>
 
-            <div class="footer__media">
-                <div class="footer__media__SNS">
-                    <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="" width="240" height="240" loading="lazy">
-                    </a>
-                    <a href="https://ameblo.jp/katu-sayo/" class="blog">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.webp" alt="ブログバナー" width="580" height="400" loading="lazy">
-                    </a>
-                </div>
-                <a href="#" class="ajihama">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.webp" alt="アジハマバナー" width="720" height="360" loading="lazy">
-                </a>
-            </div>
+                        <div class="footer__media">
+                            <div class="footer__media__SNS">
+                                <a href="https://www.instagram.com/ajihama.himakajima" class="insta">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/img/icon/Instagram_Glyph_Gradient.webp" alt="インスタグラム" width="240" height="240" loading="lazy">
+                                </a>
+                                <a href="https://ameblo.jp/katu-sayo/" class="blog">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/blog_bana-.webp" alt="ブログバナー" width="580" height="400" loading="lazy">
+                                </a>
+                            </div>
+                            <a href="#" class="ajihama">
+                                <img src="<?php echo get_template_directory_uri(); ?>/img/bana-/azi_bana-.webp" alt="アジハマバナー" width="720" height="360" loading="lazy">
+                            </a>
+                        </div>
                     </div>
                 </nav>
             </div>

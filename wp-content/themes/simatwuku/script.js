@@ -157,16 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
             toggle.classList.toggle('is-open');
         });
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const mv = document.querySelector('.mainvisual');
-            if (mv) {
-                // 現在の画面の高さを取得して、pxで直接指定する
-                const vh = window.innerHeight;
-            }
-
-        });
-
-
         //雲のアニメーション
         const cloudContainer = document.getElementById('cloudWipe');
         const mainvisual = document.querySelector('.mainvisual');
