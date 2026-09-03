@@ -67,9 +67,13 @@ function simatwuku_preload_lcp_image() {
     if ( ! is_front_page() ) {
         return;
     }
+    // index.php 側の srcset / sizes と必ず同じ内容にすること（食い違うと二重に取得される）
+    $dir = get_template_directory_uri();
     printf(
-        '<link rel="preload" as="image" href="%s" fetchpriority="high">' . "\n",
-        esc_url( get_template_directory_uri() . '/img/icon/main-title.webp' )
+        '<link rel="preload" as="image" href="%s" imagesrcset="%s 800w, %s 1400w" imagesizes="(min-width: 1100px) 700px, 90vw" fetchpriority="high">' . "\n",
+        esc_url( $dir . '/img/icon/main-title.webp' ),
+        esc_url( $dir . '/img/icon/main-title-800.webp' ),
+        esc_url( $dir . '/img/icon/main-title.webp' )
     );
 }
 add_action( 'wp_head', 'simatwuku_preload_lcp_image', 1 );

@@ -89,8 +89,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             function runSequence() {
                 const img = images[index];
+                // アニメーションを頭から流し直す。
+                // 以前は `void img.offsetWidth` で強制的にレイアウトを再計算していたが、
+                // Web Animations API で取り消せば同じことがリフローなしでできる。
                 img.style.animation = "none";
-                void img.offsetWidth;
+                if (img.getAnimations) {
+                    img.getAnimations().forEach(a => a.cancel());
+                }
 
                 const randomX = Math.random() * 100 - 20;
                 let randomRotate = Math.floor(Math.random() * 2);
@@ -132,7 +137,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 setTimeout(runSequence, delaytime);
             }
-            runSequence();
+
+            // 装飾アニメーションを最初の描画より先に始めると、
+            // メインコピー（LCP要素）が表示されるまでの時間が伸びてしまう。
+            // 描画が落ち着いてから開始する。
+            const startSequence = () => requestAnimationFrame(() => setTimeout(runSequence, 0));
+            if (document.readyState === "complete") {
+                startSequence();
+            } else {
+                window.addEventListener("load", startSequence, { once: true });
+            }
         }
 
         const toggle = document.querySelector('.global-bottom__toggle');

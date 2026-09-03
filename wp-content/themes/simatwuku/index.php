@@ -76,7 +76,11 @@
 
 
 <div class="mainvisual__copy">
+<?php // LCP要素。スマホでは 90vw（≒370px）までしか表示しないので小さい方を配信する ?>
 <img src="<?php echo get_template_directory_uri(); ?>/img/icon/main-title.webp"
+     srcset="<?php echo get_template_directory_uri(); ?>/img/icon/main-title-800.webp 800w,
+             <?php echo get_template_directory_uri(); ?>/img/icon/main-title.webp 1400w"
+     sizes="(min-width: 1100px) 700px, 90vw"
      alt="しまトゥクあじはま"
      width="1400" height="567"
      fetchpriority="high"
@@ -85,25 +89,26 @@
 
                 <div class="mainvisual__circle">
 <?php
-// メインビジュアル内の写真（表示は最大200px四方なので実寸も抑えてある）
+// メインビジュアル内を漂う写真。表示は最大200px四方（実測316px）なので実寸も400pxに抑えてある。
+// 1枚ずつ順番に現れる演出なので、LCP画像（メインコピー）の帯域を奪わないよう fetchpriority を下げる。
 $mv_photos = array(
-    array( 'icon/octopus.webp',              560, 546, true  ),
-    array( 'icon/puffer-fish.webp',          560, 414, true  ),
-    array( 'mainvisual__image/Vector_1.webp', 514, 560, false ),
-    array( 'mainvisual__image/Vector_2.webp', 560, 560, false ),
-    array( 'mainvisual__image/Vector_3.webp', 560, 560, false ),
-    array( 'mainvisual__image/Vector_4.webp', 554, 560, false ),
+    array( 'icon/octopus.webp',              400, 390, true  ),
+    array( 'icon/puffer-fish.webp',          400, 296, true  ),
+    array( 'mainvisual__image/Vector_1.webp', 367, 400, false ),
+    array( 'mainvisual__image/Vector_2.webp', 400, 400, false ),
+    array( 'mainvisual__image/Vector_3.webp', 400, 400, false ),
+    array( 'mainvisual__image/Vector_4.webp', 396, 400, false ),
     array( 'mainvisual__image/Vector_5.webp', 220, 220, false ),
-    array( 'icon/octopus_1.webp',            527, 560, true  ),
-    array( 'mainvisual__image/Vector_6.webp', 448, 560, false ),
-    array( 'mainvisual__image/Vector_7.webp', 560, 420, false ),
-    array( 'mainvisual__image/Vector_8.webp', 560, 560, false ),
-    array( 'mainvisual__image/Vector_9.webp', 560, 560, false ),
+    array( 'icon/octopus_1.webp',            376, 400, true  ),
+    array( 'mainvisual__image/Vector_6.webp', 320, 400, false ),
+    array( 'mainvisual__image/Vector_7.webp', 400, 300, false ),
+    array( 'mainvisual__image/Vector_8.webp', 400, 400, false ),
+    array( 'mainvisual__image/Vector_9.webp', 400, 400, false ),
 );
 foreach ( $mv_photos as $p ) :
     $class = 'mainvisual__circle__photo' . ( $p[3] ? ' mainvisual__circle__image' : '' );
 ?>
-<img src="<?php echo get_template_directory_uri() . '/img/' . $p[0]; ?>" alt="" class="<?php echo $class; ?>" width="<?php echo $p[1]; ?>" height="<?php echo $p[2]; ?>">
+<img src="<?php echo get_template_directory_uri() . '/img/' . $p[0]; ?>" alt="" class="<?php echo $class; ?>" width="<?php echo $p[1]; ?>" height="<?php echo $p[2]; ?>" fetchpriority="low">
 <?php endforeach; ?>
 
                 <div class="mainvisual__waves">
@@ -218,12 +223,12 @@ foreach ( $mv_photos as $p ) :
 <?php
 // スライド表示される作例写真。1枚目以外はファーストビュー外なので遅延読み込み
 $examples = array(
-    array( '15.webp', 960, 1200 ),
+    array( '15.webp', 800, 1000 ),
     array( '13.webp', 800, 1067 ),
     array( '9.webp',  800, 1069 ),
-    array( '19.webp', 960, 1200 ),
-    array( '24.webp', 960, 1200 ),
-    array( '20.webp', 961, 1200 ),
+    array( '19.webp', 800, 1000 ),
+    array( '24.webp', 800, 1000 ),
+    array( '20.webp', 800, 1000 ),
 );
 foreach ( $examples as $i => $ex ) :
 ?>
