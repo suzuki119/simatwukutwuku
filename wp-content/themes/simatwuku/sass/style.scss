@@ -473,8 +473,6 @@ h2,
 
     &__inner {
         @include inner();
-        display: flex;
-        justify-content: space-between;
     }
 
     &__logo {
