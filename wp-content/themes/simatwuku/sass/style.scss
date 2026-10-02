@@ -422,6 +422,7 @@ h2,
 .hamburger {
     position: relative;
     display: grid;
+    width: fit-content;
     grid-auto-flow: row;
     row-gap: rem(10);
     padding: rem(13) rem(10);
@@ -473,6 +474,14 @@ h2,
 
     &__inner {
         @include inner();
+        position: relative;
+    }
+
+    // ハンバーガーはロゴの右上に配置
+    .global {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
     &__logo {
@@ -940,32 +949,109 @@ h2,
 
     &__inner {
         @include inner();
-        max-width: rem(800);
-        text-align: right;
+        max-width: rem(900);
+        text-align: center;
     }
 
     &__title {
         @include title();
     }
 
-    &__textbox {
-        display: block;
-        width: 100%;
-        max-width: rem(800);
-        margin: 0 auto;
-        padding: 18px 50px;
-        background-color: $color-white;
-        border: $color-text-dark 3px solid;
+    // ×（ネット）と○（電話）の比較カード
+    &__cards {
+        display: grid;
+        gap: rem(40);
+
+        @include mq(tablet) {
+            grid-template-columns: 3fr 2fr;
+            align-items: stretch;
+            gap: rem(30);
+        }
+    }
+
+    &__card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: rem(30) rem(20) rem(24);
+        border: 3px solid $color-text-dark;
         border-radius: rem(30);
-        color: $color-text-dark;
-        font-family: $font-text;
+
+        &--ng {
+            background-color: $color-bg;
+        }
+
+        &--ok {
+            background-color: $color-white;
+            border-width: 4px;
+            box-shadow: 8px 8px 0 $color-text-dark;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+
+        .appointment-ex__card--ng & {
+            max-width: rem(200);
+        }
+
+        .appointment-ex__card--ok & {
+            max-width: rem(420);
+        }
+    }
+
+    &__card-title {
+        margin-top: rem(12);
+        font-family: $font-primary;
+        font-size: rem(20);
+        font-weight: bold;
+        line-height: 1.5;
+
+        .appointment-ex__card--ok & {
+            font-size: rem(24);
+
+            strong {
+                color: $btn-red;
+            }
+        }
+    }
+
+    &__tel {
+        margin-top: rem(4);
+        font-family: $font-primary;
+        font-size: clamp(#{rem(24)}, 7vw, #{rem(34)});
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+        text-decoration-color: $btn-red;
+        text-underline-offset: 6px;
+    }
+
+    // 休業時の注意
+    &__notice {
+        margin-top: rem(40);
+        padding: rem(12) rem(20);
+        background-color: $yellow-bg;
+        border: 2px dashed $color-text-dark;
+        border-radius: rem(16);
+        font-size: rem(14);
+        line-height: 1.8;
         text-align: left;
-        white-space: pre-line;
+
+        &::before {
+            content: "⚠ ";
+            font-weight: bold;
+        }
     }
 
     &__link {
         display: inline-block;
-        margin: rem(25) 0;
+        margin-top: rem(30);
         padding: rem(5) rem(15);
         background: $color-accent;
         color: $color-text-dark;

@@ -169,14 +169,21 @@
     <section class="appointment-ex" id="appointment-ex">
         <div class="appointment-ex__inner">
             <h2 class="appointment-ex__title">ご利用方法</h2>
-            <div class="appointment-ex__textbox">
-                <p>予約は電話のみの受付です。
-                    天候が著しく悪い日や都合による休業の時には電話が繋がりません。
-                    ご了承ください。</p>
+            <div class="appointment-ex__cards">
+                <div class="appointment-ex__card appointment-ex__card--ok">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/tel-image.webp" alt="電話で島トゥクを予約するタコのイラスト" class="appointment-ex__image" width="1200" height="625" loading="lazy">
+                    <p class="appointment-ex__card-title">ご予約は<strong>お電話のみ</strong>！</p>
+                    <a href="tel:080-4223-3450" class="appointment-ex__tel">080-4223-3450</a>
+                </div>
+                <div class="appointment-ex__card appointment-ex__card--ng">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/tel-image2.webp" alt="インターネットで予約できずに困っているタコのイラスト" class="appointment-ex__image" width="800" height="735" loading="lazy">
+                    <p class="appointment-ex__card-title">ネット予約はできません</p>
+                </div>
 
             </div>
-            <a href="<?php echo home_url('/appointment'); ?>" class="appointment-ex__link">更に詳しく＞</a>
+            <p class="appointment-ex__notice">天候が著しく悪い日や都合による休業の時には電話が繋がりません。ご了承ください。</p>
             <a href="tel:080-4223-3450" class="appointment-Btn linkBtn">予約</a>
+            <a href="<?php echo home_url('/appointment'); ?>" class="appointment-ex__link">更に詳しく＞</a>
 
 
 
